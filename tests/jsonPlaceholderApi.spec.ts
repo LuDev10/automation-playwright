@@ -13,7 +13,7 @@ test.describe('@ApiTest - JsonPlaceholder', () => {
 
       await test.step('Results of the request', async () => {
         console.log('Response data:', await response.json());
-      })
+      });
       
       await test.step('Data and status validation', async () => {
         expect(response.status()).toBe(201);
@@ -22,7 +22,7 @@ test.describe('@ApiTest - JsonPlaceholder', () => {
         expect(responseData).toMatchObject(data);
 
         console.log('Date and time of test completion:', new Date().toLocaleString());
-      })
+      });
     });
   });
 });

@@ -47,7 +47,7 @@ test.describe('@WebTest - Search in wikipedia', () => {
         const fileSize = stats.size;
 
         console.log(`Validate downloaded image: Format type: ${fileExtension} - File size: ${fileSize} bytes.`);
-      })
+      });
       await page.close();
     });
   });

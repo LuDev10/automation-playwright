@@ -31,17 +31,16 @@ export default class WikipediaPage {
 
   public async downloadImage(pokemonName: string) {
     const imageUrl = `https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Pok%C3%A9mon_${pokemonName}_art.png/150px-Pok%C3%A9mon_${pokemonName}_art.png`;
-  
     const imagesFolder = path.join(__dirname, '../../images');
+    
     if (!fs.existsSync(imagesFolder)) {
       fs.mkdirSync(imagesFolder);
     }
-  
     const imageFileName = `${pokemonName}.jpg`;
     const imagePath = path.join(imagesFolder, imageFileName);
-  
     const response = await this.page.request.fetch(imageUrl);
     const imageBuffer = await response.body();
+    
     fs.writeFileSync(imagePath, imageBuffer, 'binary');
   
     console.log(`Image saved in: ${imagePath}`);
