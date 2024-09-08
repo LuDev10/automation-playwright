@@ -1,4 +1,4 @@
-import { test as base, expect, request } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 import * as crypto from 'crypto';
 import * as dotenv from 'dotenv';
 
@@ -26,4 +26,4 @@ export const test = base.extend<EncryptedPasswordFixtures>({
   },
 });
 
-export { expect, request };
+export { expect };
