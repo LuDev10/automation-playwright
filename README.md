@@ -1,15 +1,15 @@
 
-# Challenge Automation - Monnet Payments
+# 🎭 Challenge Automation - Monnet Payments 🎭
 
 Este proyecto contiene pruebas automatizadas utilizando Playwright para interactuar con APIs y pruebas Web. A continuación, se detallan los pasos necesarios para configurar y ejecutar las pruebas.
 
-## Requisitos Previos
+## Requisitos Previos 📝
 
 1. **Node.js**: Asegúrate de tener Node.js instalado en tu máquina. Puedes descargarlo desde [nodejs.org](https://nodejs.org/).
 
 2. **Playwright**: Este proyecto utiliza Playwright para las pruebas automatizadas. Puedes instalarlo junto con las dependencias del proyecto.
 
-## Instalación
+## Instalación 🚀
 
 1. Clona el repositorio en tu máquina local:
     ```bash
@@ -21,7 +21,7 @@ Este proyecto contiene pruebas automatizadas utilizando Playwright para interact
     npm install
     ```
 
-## Configuración
+## Configuración ⚙️
 
 1. **Variable de Entorno**: Para encriptar la contraseña, debes configurar la variable de entorno `SECRET_PASS`. Puedes hacerlo ejecutando el siguiente comando en la terminal:
     ```bash
@@ -30,14 +30,14 @@ Este proyecto contiene pruebas automatizadas utilizando Playwright para interact
 
 2. **Archivos de Configuración**: El proyecto incluye una carpeta `config` que contiene datos de prueba necesarios para las pruebas automatizadas. Asegúrate de que estos archivos estén presentes y correctamente configurados.
 
-## Ejecución de Pruebas
+## Ejecución de Pruebas 👨‍💻
 
 Para ejecutar las pruebas automatizadas en la carpeta test, utiliza el siguiente comando:
 ```bash
 npx playwright test
 ```
 
-## Generación de reportes
+## Generación de reportes 📊📈📉
 
 Las pruebas generan un reporte detallado. Para visualizar el reporte después de ejecutar las pruebas, puedes ejecutar:
 ```bash
@@ -64,7 +64,7 @@ Cuando se detecten fallos en las pruebas, podrás encontrar las capturas de pant
 npx playwright show-report
 ```
 
-## Consideraciones adicionales
+## Consideraciones adicionales 👨‍🚀
 
 **Playwright Debugging**: Si necesitas ejecutar las pruebas en modo de depuración, puedes usar el siguiente comando:
 ```bash
