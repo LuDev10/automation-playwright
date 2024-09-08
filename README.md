@@ -11,7 +11,10 @@ Este proyecto contiene pruebas automatizadas utilizando Playwright para interact
 ## Instalación
 
 1. Clona el repositorio en tu máquina local:
-    
+    ```bash
+    https://github.com/LuDev10/challege-monnet.git
+    cd challege-monnet
+    ```
     
 2. Instala las dependencias del proyecto:
     ```bash
