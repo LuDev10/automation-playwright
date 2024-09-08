@@ -1,6 +1,7 @@
-# Proyecto Challenge automation - Monnet Payments
 
-Este proyecto contiene pruebas automatizadas utilizando Playwright para interactuar con las APIs de PokeAPI y JsonPlaceholder. A continuación, se detallan los pasos necesarios para configurar y ejecutar las pruebas.
+# Challenge Automation - Monnet Payments
+
+Este proyecto contiene pruebas automatizadas utilizando Playwright para interactuar con APIs y pruebas Web. A continuación, se detallan los pasos necesarios para configurar y ejecutar las pruebas.
 
 ## Requisitos Previos
 
@@ -13,7 +14,6 @@ Este proyecto contiene pruebas automatizadas utilizando Playwright para interact
 1. Clona el repositorio en tu máquina local:
     ```bash
     https://github.com/LuDev10/challege-monnet.git
-    cd challege-monnet
     ```
     
 2. Instala las dependencias del proyecto:
@@ -32,10 +32,43 @@ Este proyecto contiene pruebas automatizadas utilizando Playwright para interact
 
 ## Ejecución de Pruebas
 
-Para ejecutar las pruebas automatizadas y generar un reporte, utiliza el siguiente comando:
+Para ejecutar las pruebas automatizadas en la carpeta test, utiliza el siguiente comando:
 ```bash
-export SECRET_PASS="tu-contraseña-secreta" && npx playwright test
+npx playwright test
+```
 
+## Generación de reportes
 
+Las pruebas generan un reporte detallado. Para visualizar el reporte después de ejecutar las pruebas, puedes ejecutar:
+```bash
+npx playwright show-report
+```
+Esto abrirá un reporte en tu navegador por defecto, con información detallada de cada test ejecutado, incluyendo screenshots, pasos y errores.
 
+## Captura de Evidencia en Caso de Fallo
+En la configuración de Playwright, se han añadido a `playwright.config.ts` dos comandos para capturar evidencia (screenshots y videos) en caso de que las pruebas fallen:
+
+**Captura de Pantallas**: Si un test falla, se tomará automáticamente una captura de pantalla.
+```bash
+screenshot: 'only-on-failure'
+```
+**Grabación de Video**: Si un test falla, el video de la ejecución del test será retenido para su revisión.
+```bash
+video: 'retain-on-failure'
+```
+Estas configuraciones están pensadas para facilitar el análisis y la depuración de los fallos en las pruebas.
+
+**Acceso a la Evidencia**
+Cuando se detecten fallos en las pruebas, podrás encontrar las capturas de pantalla y los videos generados en el directorio de reportes que se configura automáticamente durante la ejecución de los tests. Para visualizar las pruebas fallidas con las capturas y videos, puedes ejecutar el comando anteriormente mencionado para la generacion de reportes:
+```bash
+npx playwright show-report
+```
+
+## Consideraciones adicionales
+
+**Playwright Debugging**: Si necesitas ejecutar las pruebas en modo de depuración, puedes usar el siguiente comando:
+```bash
+npx playwright test --debug
+```
+**Reemplazo de Imágenes**: La carpeta images será creada automáticamente al ejecutar las pruebas de validación web. Las imágenes existentes serán sobrescritas si ya existen archivos con el mismo nombre.
 
