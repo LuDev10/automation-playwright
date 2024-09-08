@@ -11,7 +11,7 @@ type EncryptedPasswordFixtures = {
 const secretPass = process.env.SECRET_PASS;
 
 if (!secretPass) {
-  throw new Error('La variable de entorno SECRET_PASS no está definida, asegúrate de definirla antes de correr los tests');
+  throw new Error('The SECRET_PASS environment variable is not set, be sure to set it before running the tests.');
 }
 
 function encryptPass(pass: string): string {
@@ -21,7 +21,7 @@ function encryptPass(pass: string): string {
 export const test = base.extend<EncryptedPasswordFixtures>({
   EncryptedPassword: async ({}, use) => {
     const encrypted = encryptPass(secretPass);
-    console.log('Logueo exitoso, clave encriptada:', encrypted);
+    console.log('Successful logging, encrypted key:', encrypted);
     await use(encrypted);
   },
 });
