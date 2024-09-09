@@ -47,13 +47,13 @@ export default class WikipediaPage {
     return imagePath;
   }
 
-  validateImageExtension(filePath: string) {
+  public validateImageExtension(filePath: string) {
     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.svg'];
     const fileExtension = path.extname(filePath).toLowerCase();
     return allowedExtensions.includes(fileExtension);
   }
 
-  validateImageSize(filePath: string) {
+  public validateImageSize(filePath: string) {
     const stats = fs.statSync(filePath);
     return stats.size < 500000; 
   }
