@@ -19,7 +19,7 @@ test.describe('@WebTest - Search in wikipedia', () => {
       const capitalizedPokemonName = capitalizeFirstLetter(pokemonName as string);
 
       await test.step('Goto wikipedia page', async () => {
-        await wikipediaPage.navigateToPokemonPage(capitalizedPokemonName);
+        await wikipediaPage.navigateToPokemonPage(pokemonName);
       });
       
       await test.step('Validate title', async () => {
@@ -33,12 +33,8 @@ test.describe('@WebTest - Search in wikipedia', () => {
         expect(artist).toBeTruthy();
       });
 
-      await test.step('Donwload image, save it in the repo and validate', async () => {
+      await test.step('Download image, save it in the repo and validate', async () => {
         const imagePath = await wikipediaPage.downloadImage(capitalizedPokemonName);
-        const isValidExtension = wikipediaPage.validateImageExtension(imagePath);
-      
-        expect(isValidExtension).toBe(true);
-
         const isValidSize = wikipediaPage.validateImageSize(imagePath);
         expect(isValidSize).toBe(true);
 

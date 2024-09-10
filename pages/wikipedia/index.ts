@@ -36,21 +36,24 @@ export default class WikipediaPage {
     if (!fs.existsSync(imagesFolder)) {
       fs.mkdirSync(imagesFolder);
     }
-    const imageFileName = `${pokemonName}.jpg`;
+  
+    const urlExtension = path.extname(imageUrl);
+    const validExtensions = ['.jpg', '.jpeg', '.png', '.svg'];
+  
+    if (!validExtensions.includes(urlExtension.toLowerCase())) {
+      console.error(`Invalid image format: ${urlExtension}`);
+      throw new Error(`The image URL has an invalid format: ${urlExtension}`);
+    }
+  
+    const imageFileName = `${pokemonName}${urlExtension}`;
     const imagePath = path.join(imagesFolder, imageFileName);
     const response = await this.page.request.fetch(imageUrl);
     const imageBuffer = await response.body();
-    
+  
     fs.writeFileSync(imagePath, imageBuffer, 'binary');
   
     console.log(`Image saved in: ${imagePath}`);
     return imagePath;
-  }
-
-  public validateImageExtension(filePath: string) {
-    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.svg'];
-    const fileExtension = path.extname(filePath).toLowerCase();
-    return allowedExtensions.includes(fileExtension);
   }
 
   public validateImageSize(filePath: string) {
