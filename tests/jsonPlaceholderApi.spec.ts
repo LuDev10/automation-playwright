@@ -4,8 +4,7 @@ import { testData } from '../config/testData';
 
 test.describe('@ApiTest - JsonPlaceholder', () => {
   testData.forEach((data, index) => {
-    test(`JsonPlaceholder post ${index + 1}`, async ({ EncryptedPassword, playwright }) => {
-      expect(EncryptedPassword);
+    test(`JsonPlaceholder post ${index + 1}`, async ({ playwright }) => {
 
       const requestContext = await playwright.request.newContext();
       const jsonPlaceholderPage = new JsonPlaceholder(requestContext);
@@ -20,8 +19,6 @@ test.describe('@ApiTest - JsonPlaceholder', () => {
         const responseData = await response.json();
         expect(responseData).toHaveProperty('id');
         expect(responseData).toMatchObject(data);
-
-        console.log('Date and time of test completion:', new Date().toLocaleString());
       });
     });
   });

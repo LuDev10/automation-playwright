@@ -19,11 +19,15 @@ function encryptPass(pass: string): string {
 }
 
 export const test = base.extend<EncryptedPasswordFixtures>({
-  EncryptedPassword: async ({}, use) => {
+  EncryptedPassword: [async ({}, use) => {
     const encrypted = encryptPass(secretPass);
     console.log('Successful logging, encrypted key:', encrypted);
     await use(encrypted);
-  },
+  }, { auto: true }],
+});
+
+test.afterEach(async () => {
+  console.log('Date and time of test completion:', new Date().toLocaleString());
 });
 
 export { expect };
