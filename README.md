@@ -1,5 +1,5 @@
 
-# 🎭 Challenge Automation - Monnet Payments 🎭
+# 🎭 Automation - Playwright/TS 🎭
 
 Este proyecto contiene pruebas automatizadas utilizando Playwright para interactuar con APIs y pruebas Web. A continuación, se detallan los pasos necesarios para configurar y ejecutar las pruebas.
 
