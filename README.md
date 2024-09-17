@@ -36,6 +36,34 @@ Para ejecutar las pruebas automatizadas en la carpeta test, utiliza el siguiente
 ```bash
 npx playwright test
 ```
+## Archivo .gitignore 🚫
+
+El archivo `.gitignore` se utiliza para especificar qué archivos y directorios deben ser ignorados por Git.
+
+### Contenido del archivo .gitignore 🛡️
+
+```.gitignore
+node_modules/
+test-results/
+playwright-report/
+playwright/.cache/
+.env
+.DS_Store
+.gitignore
+.vscode/
+images/**/*
+```
+Teniendo como utilidad, evitar que archivos innecesarios o sensibles se incluyan en el repositorio:
+
+* **node_modules/:** El directorio donde se almacenan las dependencias de Node.js.
+* **test-results/:** Directorio que contiene los resultados de las pruebas.
+* **playwright-report/:** Directorio que contiene los reportes generados por Playwright.
+* **playwright/.cache/:** Directorio de caché de Playwright.
+* **.env:** Archivos de entorno que pueden contener información sensible.
+* **.DS_Store:** Archivos específicos de macOS que no son necesarios en el repositorio.
+* **.gitignore:** El propio archivo .gitignore para evitar que se incluya en sí mismo.
+* **.vscode/:** Configuraciones específicas de Visual Studio Code.
+* **images/**/*:** Todos los archivos dentro del directorio images. (Estos archivos se crea a la hora de correr el test para descargar imagen) mas detalles en la seccion: Consideraciones adicionales 👇
 
 ## Generación de reportes 📊📈📉
 

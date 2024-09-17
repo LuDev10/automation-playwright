@@ -1,20 +1,14 @@
 import { test, expect } from '../fixtures/encriptedPassword';
-import * as xlsx from 'xlsx';
+import { readExcelFile } from '../utils/fileReading';
 import * as path from 'path';
 import * as fs from 'fs';
 import WikipediaPage from '../pages/wikipedia/index';
 
-const filePath = path.join(__dirname, '../data/Datos-pruebas.xlsx');
-const workbook = xlsx.readFile(filePath);
-const sheet = workbook.Sheets[workbook.SheetNames[0]];
-const data = xlsx.utils.sheet_to_json(sheet, { header: 1 });
-
-const testData: [any, string][] = data.slice(1) as [any, string][];
+const testData: [any, string][] = readExcelFile('../data/Datos-pruebas.xlsx');
 
 test.describe('@WebTest - Search in wikipedia', () => {
   testData.forEach(([_, pokemonName]) => {
-    test(`Search for pokemon ${pokemonName} on Wikipedia`, async ({ EncryptedPassword, page }) => {
-      await(EncryptedPassword);
+    test(`Search for pokemon ${pokemonName} on Wikipedia`, async ({ page }) => {
       const wikipediaPage = new WikipediaPage(page);
       const capitalizedPokemonName = capitalizeFirstLetter(pokemonName as string);
 
@@ -22,11 +16,11 @@ test.describe('@WebTest - Search in wikipedia', () => {
         await wikipediaPage.navigateToPokemonPage(pokemonName);
       });
       
-      await test.step('Validate title', async () => {
+      await test.step('Assert title', async () => {
         await wikipediaPage.getTitle(capitalizedPokemonName);
       });
 
-      await test.step('Validate artist', async () => {
+      await test.step('Assert artist', async () => {
         const artist = await wikipediaPage.getArtist();
         
         console.log(`The author who created the drawing: : ${artist}`);
@@ -39,10 +33,13 @@ test.describe('@WebTest - Search in wikipedia', () => {
         expect(isValidSize).toBe(true);
 
         const fileExtension = path.extname(imagePath).toLowerCase();
+        const validExtensions = ['.jpg', '.jpeg', '.png', '.svg'];
+        expect(validExtensions).toContain(fileExtension);
+
         const stats = fs.statSync(imagePath);
         const fileSize = stats.size;
 
-        console.log(`Validate downloaded image: Format type: ${fileExtension} - File size: ${fileSize} bytes.`);
+        console.log(`Assert downloaded image: Format type: ${fileExtension} - File size: ${fileSize} bytes.`);
       });
       await page.close();
     });

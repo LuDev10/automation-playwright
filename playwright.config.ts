@@ -38,18 +38,33 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: [
+        /.*Api.spec.ts/,
+      ]
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      testIgnore: [
+        /.*Api.spec.ts/,
+      ]
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testIgnore: [
+        /.*Api.spec.ts/,
+      ]
     },
-
+    {
+      name: 'API',
+      use: {
+        baseURL: 'https://pokeapi.co/api/v2',
+      },
+      testMatch: /.*Api.spec.ts/,
+    },
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

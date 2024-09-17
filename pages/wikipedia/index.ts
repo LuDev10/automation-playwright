@@ -10,7 +10,6 @@ export default class WikipediaPage {
   constructor(page: Page) {
     this.page = page;
     this.locators = new WikipediaLocators(page);
-
   }
 
   public async navigateToPokemonPage(pokemonName: string) {
@@ -20,7 +19,6 @@ export default class WikipediaPage {
 
   public async getTitle(pokemonName: string) {
     const titleElement = this.locators.title(pokemonName);
-    
     await expect(titleElement).toBeVisible();
   }
 
@@ -30,22 +28,14 @@ export default class WikipediaPage {
   }
 
   public async downloadImage(pokemonName: string) {
-    const imageUrl = `https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Pok%C3%A9mon_${pokemonName}_art.png/150px-Pok%C3%A9mon_${pokemonName}_art.png`;
+    const imageUrl = await this.locators.getImageUrl();
     const imagesFolder = path.join(__dirname, '../../images');
     
     if (!fs.existsSync(imagesFolder)) {
       fs.mkdirSync(imagesFolder);
     }
   
-    const urlExtension = path.extname(imageUrl);
-    const validExtensions = ['.jpg', '.jpeg', '.png', '.svg'];
-  
-    if (!validExtensions.includes(urlExtension.toLowerCase())) {
-      console.error(`Invalid image format: ${urlExtension}`);
-      throw new Error(`The image URL has an invalid format: ${urlExtension}`);
-    }
-  
-    const imageFileName = `${pokemonName}${urlExtension}`;
+    const imageFileName = `${pokemonName}${path.extname(imageUrl)}`;
     const imagePath = path.join(imagesFolder, imageFileName);
     const response = await this.page.request.fetch(imageUrl);
     const imageBuffer = await response.body();
