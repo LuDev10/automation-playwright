@@ -13,7 +13,7 @@ Este proyecto contiene pruebas automatizadas utilizando Playwright para interact
 
 1. Clona el repositorio en tu máquina local:
     ```bash
-    https://github.com/LuDev10/challege-monnet.git
+    https://github.com/LuDev10/automation-playwright.git
     ```
     
 2. Instala las dependencias del proyecto:
